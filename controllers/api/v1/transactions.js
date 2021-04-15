@@ -8,23 +8,23 @@ function newTransaction(req, res){
 // GET all transactions from 1 user
 function getTransactions(req, res){
     res.json({
-    status: "Succes",
-    message: `GETting all transactions from user`})
+        status: "Succes",
+        message: `GETting all transactions from user`})
 }
 
 // GET all details from specific transaction
 function getTransferById(req, res){
     let id = req.params.id;
     res.json({
-    status: "Succes",
-    message: `GETting transactions with id ${id} from user`})
+        status: "Succes",
+        message: `GETting transactions with id ${id} from user`})
 }
 
 // GET aal users with #coins per user
 function getLeaderboard(req, res){
     res.json({
-    status: "Succes",
-    message: `GETting all coins per user`})
+        status: "Succes",
+        message: `GETting all coins per user`})
 }
 
 module.exports.newTransaction = newTransaction;
