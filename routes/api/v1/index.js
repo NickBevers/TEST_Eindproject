@@ -10,13 +10,14 @@ router.get('/', function(req, res, next) {
 // Make new transaction
 router.post("/transfers", controller.newTransaction)
 
-//Get all transactions from user
+// Get all transactions from user
 router.get("/transfers", controller.getTransactions)
 
-//Get all details from specifc transaction
+// Get all details from specifc transaction
 router.get("/transfers/:id", controller.getTransferById)
 
-//Get #coins per user -> make leaderboard out of it
+// Get #coins per user -> make leaderboard out of it
 router.get("/leaderboard", controller.getLeaderboard)
 
+// Export module
 module.exports = router;
