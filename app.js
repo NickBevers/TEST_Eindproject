@@ -7,6 +7,9 @@ var logger = require('morgan');
 var indexRouter = require('./routes/api/v1/index');
 var usersRouter = require('./routes/users');
 
+const mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost:27017/TEST_crypto', {useNewUrlParser: true, useUnifiedTopology: true});
+
 var app = express();
 
 const cors = require("cors");
