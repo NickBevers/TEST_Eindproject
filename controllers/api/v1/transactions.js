@@ -1,21 +1,20 @@
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
-const transactionSchema = new Schema({
-    amount: Number,
-    user: String,
-    recipient: String,
-    reason: String
-})
-const Transaction= mongoose.model('Transaction', transactionSchema);
+const Transaction = require('../../../models/Transaction')
 
 // POST new transaction
 function newTransaction(req, res){
     let transaction = new Transaction();
-    transaction.amount = 25;
-    transaction.user = "Nick Bevers";
-    transaction.recipient = "Gollum";
-    transaction.reason = "Precious is love, precious is life!"
+    transaction.amount = req.body.amount;
+    transaction.user = req.body.user;
+    transaction.recipient = req.body.recipient;
+    transaction.reason = req.body.reason;
+
     transaction.save((err, doc) => {
+        if(err){
+            res.json({
+                status: "Error",
+                message: `Could not fulfill your transaction`})
+        }
+
         if (!err){
             res.json({
                 status: "Succes",
@@ -31,9 +30,17 @@ function newTransaction(req, res){
 
 // GET all transactions from 1 user
 function getTransactions(req, res){
-    res.json({
-        status: "Succes",
-        message: `GETting all transactions from user`})
+    Transaction.find({user: "Nick Bevers"}, (err, docs) => {
+        if(!err){
+            res.json({
+                status: "Succes",
+                message: `GETting all transactions from user`,
+                data: {
+                    transaction: docs
+                }
+            })
+        }
+    });    
 }
 
 // GET all details from specific transaction
